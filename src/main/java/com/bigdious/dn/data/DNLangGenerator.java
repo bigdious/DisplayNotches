@@ -18,7 +18,7 @@ public class DNLangGenerator extends DNLangProvider {
 		this.addBlock(DNBlocks.DISPLAY_NOTCH, "Display Notch");
 		for (DyeColor color : DyeColor.values()) {
 			if (color != DyeColor.BLACK) {
-				this.add("block.risus." + color.getName() + "_display_notch", WordUtils.capitalize(color.getName().replace('_', ' ')) + " Display Notch");
+				this.add("block.dn." + color.getName() + "_display_notch", WordUtils.capitalize(color.getName().replace('_', ' ')) + " Display Notch");
 			}
 		}
 	}

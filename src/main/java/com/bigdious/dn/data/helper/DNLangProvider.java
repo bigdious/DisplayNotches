@@ -43,58 +43,6 @@ public abstract class DNLangProvider extends LanguageProvider {
 		this.upsideDownEntries.put(key, LangConversionHelper.convertComponents(splitEnglish));
 	}
 
-	public void addBiome(ResourceKey<Biome> biome, String name) {
-		this.add("biome.risus." + biome.location().getPath(), name);
-	}
-
-	public void addBannerPattern(String patternPrefix, String patternName, DyeColor... excludedColors) {
-		this.add("item.risus." + patternPrefix + "_banner_pattern", "Banner Pattern");
-		this.add("item.risus." + patternPrefix + "_banner_pattern.desc", patternName);
-		List<DyeColor> excluded = Arrays.stream(excludedColors).toList();
-		for (DyeColor color : DyeColor.values()) {
-			if (!excluded.contains(color)) {
-				this.add("block.minecraft.banner.risus." + patternPrefix + "." + color.getName(), WordUtils.capitalize(color.getName().replace('_', ' ')) + " " + patternName);
-			}
-		}
-	}
-
-	public void addMusicDisc(DeferredItem<Item> disc, String description) {
-		this.addItem(disc, "Music Disc");
-		this.add(Util.makeDescriptionId("jukebox_song", disc.get().components().get(DataComponents.JUKEBOX_PLAYABLE).song().key().location()), description);
-	}
-
-	public void addStructure(ResourceKey<Structure> biome, String name) {
-		this.add("structure.risus." + biome.location().getPath(), name);
-	}
-
-	public void addAdvancement(String key, String title, String desc) {
-		this.add("advancement.risus." + key, title);
-		this.add("advancement.risus." + key + ".desc", desc);
-	}
-
-	public void addEntityAndEgg(DeferredHolder<EntityType<?>, ? extends EntityType<?>> entity, String name) {
-		this.addEntityType(entity, name);
-		this.add("item.risus." + entity.getId().getPath() + "_spawn_egg", name + " Spawn Egg");
-	}
-
-	public void addDeathMessage(String key, String name) {
-		this.add("death.attack.risus." + key, name);
-	}
-
-	public void addTrim(String key, String name) {
-		this.add("trim_material.risus." + key, name + " Material");
-	}
-
-	public void translateListOfStrings(String baseKey, String... entries) {
-		for (int i = 0; i < entries.length; i++) {
-			this.add(baseKey + i, entries[i]);
-		}
-	}
-
-	public void translateTag(TagKey<?> tag, String name) {
-		this.add(String.format("tag.%s.%s.%s", tag.registry().location().getPath(), tag.location().getNamespace(), tag.location().getPath().replace('/', '.')), name);
-	}
-
 	@Override
 	public CompletableFuture<?> run(CachedOutput cache) {
 		//generate normal lang file

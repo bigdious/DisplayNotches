@@ -34,7 +34,7 @@ version = mod_version
 group = mod_group_id
 
 base {
-	archivesName = 'Risus-' + project.minecraft_version
+	archivesName = 'DisplayNotches-' + project.minecraft_version
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
