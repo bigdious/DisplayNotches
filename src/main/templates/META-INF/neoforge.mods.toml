@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT license"
+
+[[mods]]
+modId = "dn"
+version = "${mod_version}"
+displayName = "Display Notches"
+logoFile = "logo.png"
+logoBlur = false
+authors = "bigdious"
+description = '''Item Frames but reliable and loyal.'''
+itemIcon = "dn:display_notch"
+
+[[dependencies.dn]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.72,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.dn]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
