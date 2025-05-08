@@ -1,0 +1,20 @@
+{
+  "values": [
+    "dn:display_notch",
+    "dn:red_display_notch",
+    "dn:green_display_notch",
+    "dn:light_gray_display_notch",
+    "dn:light_blue_display_notch",
+    "dn:gray_display_notch",
+    "dn:blue_display_notch",
+    "dn:yellow_display_notch",
+    "dn:orange_display_notch",
+    "dn:pink_display_notch",
+    "dn:purple_display_notch",
+    "dn:magenta_display_notch",
+    "dn:brown_display_notch",
+    "dn:white_display_notch",
+    "dn:lime_display_notch",
+    "dn:cyan_display_notch"
+  ]
+}

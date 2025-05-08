@@ -53,6 +53,8 @@ public class DN {
 		var lookupProvider = registryDataGenerator.getRegistryProvider();
 		generator.addProvider(isServer, new DNLootGenerator(packOutput, lookupProvider));
 		generator.addProvider(isServer, new DNCraftingGenerator(packOutput, lookupProvider));
+		var blocktags = new DNBlockTagGenerator(packOutput, lookupProvider, existingFileHelper);
+		generator.addProvider(isServer, blocktags);
 	}
 	public static ResourceLocation prefix(String name) {
 		return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
