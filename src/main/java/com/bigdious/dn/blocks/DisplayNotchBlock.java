@@ -203,4 +203,16 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
 		return new ItemStack(DNBlocks.DISPLAY_NOTCH);
 	}
+
+	protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos pos) {
+		return getOutputSignal(blockState.getValue(ROTATION));
+	}
+
+	public static int getOutputSignal(int rotation) {
+		return rotation;
+	}
+
+	protected boolean hasAnalogOutputSignal(BlockState state) {
+		return true;
+	}
 }
