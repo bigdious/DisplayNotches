@@ -18,6 +18,7 @@ public class DNBlockLootTables extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 		dropSelf(DNBlocks.DISPLAY_NOTCH.get());
+		dropOther(DNBlocks.INVISIBLE_DISPLAY_NOTCH.get(), DNBlocks.DISPLAY_NOTCH);
 		dropOther(DNBlocks.GRAY_DISPLAY_NOTCH.get(), DNBlocks.DISPLAY_NOTCH);
 		dropOther(DNBlocks.LIGHT_GRAY_DISPLAY_NOTCH.get(), DNBlocks.DISPLAY_NOTCH);
 		dropOther(DNBlocks.WHITE_DISPLAY_NOTCH.get(), DNBlocks.DISPLAY_NOTCH);

@@ -19,6 +19,7 @@ public class DNBlockTagGenerator extends BlockTagsProvider {
 	protected void addTags(HolderLookup.Provider provider) {
 		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
 				DNBlocks.DISPLAY_NOTCH.get(),
+				DNBlocks.INVISIBLE_DISPLAY_NOTCH.get(),
 				DNBlocks.RED_DISPLAY_NOTCH.get(),
 				DNBlocks.GREEN_DISPLAY_NOTCH.get(),
 				DNBlocks.LIGHT_GRAY_DISPLAY_NOTCH.get(),

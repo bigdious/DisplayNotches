@@ -2,6 +2,7 @@ package com.bigdious.dn.blocks.entity;
 
 import com.bigdious.dn.blocks.DisplayNotchBlock;
 import com.bigdious.dn.init.DNBlockEntities;
+import com.bigdious.dn.init.DNBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -92,6 +93,13 @@ public class DisplayNotchBlockEntity extends BlockEntity implements WorldlyConta
 			}
 		} else if (stack.is(ItemTags.AXES)) {
 			this.stand = !this.stand;
+			this.setChanged();
+			level.sendBlockUpdated(pos, state, state, 2);
+			return true;
+		} else if (stack.is(Tags.Items.GLASS_BLOCKS)){
+			var oldBe = level.getBlockEntity(pos);
+			level.setBlockAndUpdate(pos, state.getBlock().defaultBlockState().is(DNBlocks.INVISIBLE_DISPLAY_NOTCH) ? DNBlocks.DISPLAY_NOTCH.get().withPropertiesOf(state) : DNBlocks.INVISIBLE_DISPLAY_NOTCH.get().withPropertiesOf(state));
+			level.setBlockEntity(oldBe);
 			this.setChanged();
 			level.sendBlockUpdated(pos, state, state, 2);
 			return true;

@@ -2,6 +2,6 @@
   "parent": "dn:block/template_display_notch",
   "render_type": "minecraft:cutout",
   "textures": {
-    "texture": "minecraft:block/yellow_wool"
+    "texture": "dn:block/mark"
   }
 }

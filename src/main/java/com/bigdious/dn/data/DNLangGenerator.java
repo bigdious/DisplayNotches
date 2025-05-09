@@ -16,6 +16,7 @@ public class DNLangGenerator extends DNLangProvider {
 	@Override
 	protected void addTranslations() {
 		this.addBlock(DNBlocks.DISPLAY_NOTCH, "Display Notch");
+		this.addBlock(DNBlocks.INVISIBLE_DISPLAY_NOTCH, "Invisible Display Notch");
 		for (DyeColor color : DyeColor.values()) {
 			if (color != DyeColor.BLACK) {
 				this.add("block.dn." + color.getName() + "_display_notch", WordUtils.capitalize(color.getName().replace('_', ' ')) + " Display Notch");

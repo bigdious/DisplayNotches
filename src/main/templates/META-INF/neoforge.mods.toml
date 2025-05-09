@@ -9,7 +9,7 @@ displayName = "Display Notches"
 logoFile = "logo.png"
 logoBlur = false
 authors = "bigdious"
-description = '''Item Frames but reliable and loyal.'''
+description = '''Item Frames but reliable, beautiful and loyal.'''
 itemIcon = "dn:display_notch"
 
 [[dependencies.dn]]
@@ -25,3 +25,6 @@ type = "required"
 versionRange = "[1.21.1]"
 ordering = "NONE"
 side = "BOTH"
+
+[[mixins]]
+config = "dn.mixins.json"

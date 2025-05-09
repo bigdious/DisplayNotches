@@ -1,6 +1,7 @@
 {
   "values": [
     "dn:display_notch",
+    "dn:invisible_display_notch",
     "dn:red_display_notch",
     "dn:green_display_notch",
     "dn:light_gray_display_notch",

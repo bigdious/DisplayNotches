@@ -13,6 +13,7 @@ public class DNBlockEntities {
 
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DisplayNotchBlockEntity>> DISPLAY_NOTCH = BLOCK_ENTITIES.register("display_notch", () -> BlockEntityType.Builder.of(DisplayNotchBlockEntity::new, Blocks.SHULKER_BOX,
 			DNBlocks.DISPLAY_NOTCH.get(),
+			DNBlocks.INVISIBLE_DISPLAY_NOTCH.get(),
 			DNBlocks.BLUE_DISPLAY_NOTCH.get(),
 			DNBlocks.BROWN_DISPLAY_NOTCH.get(),
 			DNBlocks.CYAN_DISPLAY_NOTCH.get(),
