@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "minecraft:item_frame"
+      "tag": "dn:item_frames"
     },
     {
       "item": "minecraft:blackstone"

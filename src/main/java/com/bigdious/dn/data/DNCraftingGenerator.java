@@ -3,6 +3,7 @@ package com.bigdious.dn.data;
 import com.bigdious.dn.DN;
 import com.bigdious.dn.init.DNBlocks;
 import com.bigdious.dn.init.DNItems;
+import com.bigdious.dn.init.DNTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -23,7 +24,7 @@ public class DNCraftingGenerator extends RecipeProvider {
 	@Override
 	protected void buildRecipes(RecipeOutput consumer) {
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, DNBlocks.DISPLAY_NOTCH.asItem(), 1)
-			.requires(Ingredient.of(Items.ITEM_FRAME))
+			.requires(Ingredient.of(DNTags.Items.ITEM_FRAMES))
 			.requires(Ingredient.of(Items.BLACKSTONE))
 			.unlockedBy("has_item", has(Items.LEATHER))
 			.unlockedBy("has_item", has(Items.ITEM_FRAME))

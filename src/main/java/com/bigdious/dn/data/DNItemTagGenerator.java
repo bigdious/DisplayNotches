@@ -1,9 +1,11 @@
 package com.bigdious.dn.data;
 
 import com.bigdious.dn.DN;
+import com.bigdious.dn.init.DNTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -17,6 +19,9 @@ public class DNItemTagGenerator extends ItemTagsProvider {
 	}
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
-
+		this.tag(DNTags.Items.ITEM_FRAMES).add(
+			Items.ITEM_FRAME,
+			Items.GLOW_ITEM_FRAME
+		);
 	}
 }

@@ -49,12 +49,14 @@ public class DN {
 		generator.addProvider(isClient, new DNLangGenerator(packOutput));
 
 		boolean isServer = event.includeServer();
+
 		DNRegistryDataGenerator registryDataGenerator = new DNRegistryDataGenerator(packOutput, datapackProvider.getRegistryProvider());
 		var lookupProvider = registryDataGenerator.getRegistryProvider();
-		generator.addProvider(isServer, new DNLootGenerator(packOutput, lookupProvider));
-		generator.addProvider(isServer, new DNCraftingGenerator(packOutput, lookupProvider));
 		var blocktags = new DNBlockTagGenerator(packOutput, lookupProvider, existingFileHelper);
 		generator.addProvider(isServer, blocktags);
+		generator.addProvider(isServer, new DNItemTagGenerator(packOutput, lookupProvider, blocktags.contentsGetter(), existingFileHelper));
+		generator.addProvider(isServer, new DNLootGenerator(packOutput, lookupProvider));
+		generator.addProvider(isServer, new DNCraftingGenerator(packOutput, lookupProvider));
 	}
 	public static ResourceLocation prefix(String name) {
 		return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
