@@ -50,6 +50,7 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 	public static final DirectionProperty FACING = BlockStateProperties.FACING;
 	public static final BooleanProperty ELEVATE = BooleanProperty.create("elevate");
 	public static final BooleanProperty GLOWING = BooleanProperty.create("glowing");
+	public static final BooleanProperty INVISIBLE = BooleanProperty.create("invisible");
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 
 	public static final Map<DyeColor, DeferredBlock<Block>> NOTCH_BY_DYE = Util.make(Maps.newEnumMap(DyeColor.class), map -> {
@@ -77,6 +78,7 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 			.setValue(FLUIDLOGGED, MultiloggingEnum.EMPTY)
 			.setValue(FACING, Direction.UP)
 			.setValue(GLOWING, false)
+			.setValue(INVISIBLE, false)
 			.setValue(ROTATION, 0)
 			.setValue(ELEVATE, false));
 	}
@@ -93,6 +95,10 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 			level.setBlock(pos, state.cycle(GLOWING), 3);
 			level.sendBlockUpdated(pos, state, state, 2);
 			return ItemInteractionResult.sidedSuccess(level.isClientSide());
+		} else if (!notch.getTheItem().isEmpty() && stack.is(Items.GLASS)) {
+			level.setBlock(pos, state.cycle(INVISIBLE), 3);
+			level.sendBlockUpdated(pos, state, state, 2);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide());
 		} else if (!notch.getTheItem().isEmpty() && stack.is(ItemTags.PICKAXES)) {
 			level.setBlock(pos, state.cycle(ROTATION), 3);
 			level.sendBlockUpdated(pos, state, state, 2);
@@ -102,12 +108,17 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 		} else {
 			if (!level.isClientSide()) {
 				if (notch.getTheItem().isEmpty()) {
-					notch.setTheItem(player.getInventory().removeItem(player.getInventory().selected, 1));
+					if (player.isCreative()) {
+						notch.setTheItem(player.getItemInHand(hand));
+					} else {
+						notch.setTheItem(player.getInventory().removeItem(player.getInventory().selected, 1));
+					}
 				} else {
+					if (!player.isCreative()) {
 					ItemEntity item = new ItemEntity(level, player.getX(), player.getY(), player.getZ(), notch.getTheItem());
 					level.addFreshEntity(item);
+					}
 					notch.setTheItem(ItemStack.EMPTY);
-					level.setBlock(pos, state.setValue(ELEVATE, false), 3);
 				}
 
 				notch.setChanged();
@@ -146,7 +157,7 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, FLUIDLOGGED, ELEVATE, ROTATION, GLOWING);
+		builder.add(FACING, FLUIDLOGGED, ELEVATE, INVISIBLE, ROTATION, GLOWING);
 	}
 
 	@Override

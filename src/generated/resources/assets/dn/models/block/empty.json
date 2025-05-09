@@ -1,6 +1,3 @@
 {
-  "parent": "dn:block/template_display_notch",
-  "textures": {
-    "texture": "dn:block/empty"
-  }
+  "parent": "minecraft:block/block"
 }
