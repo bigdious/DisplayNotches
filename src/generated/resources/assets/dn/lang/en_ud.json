@@ -15,5 +15,10 @@
   "block.dn.purple_display_notch": "ɥɔʇoN ʎɐꞁdsᴉᗡ ǝꞁdɹnԀ",
   "block.dn.red_display_notch": "ɥɔʇoN ʎɐꞁdsᴉᗡ pǝᴚ",
   "block.dn.white_display_notch": "ɥɔʇoN ʎɐꞁdsᴉᗡ ǝʇᴉɥM",
-  "block.dn.yellow_display_notch": "ɥɔʇoN ʎɐꞁdsᴉᗡ ʍoꞁꞁǝ⅄"
+  "block.dn.yellow_display_notch": "ɥɔʇoN ʎɐꞁdsᴉᗡ ʍoꞁꞁǝ⅄",
+  "config.dn.spinning_source.signal": "ꞁɐuᵷᴉS ǝuoʇspǝᴚ",
+  "config.dn.spinning_source.torch_item": "ʞɔᴉꞁɔ-ʇɥᵷᴉᴚ ɥɔɹo⟘ ǝuoʇspǝᴚ",
+  "dn.configuration.section.obtrophies.common.toml": "sᵷuᴉʇʇǝS uoɯɯoƆ",
+  "dn.configuration.section.obtrophies.common.toml.title": "sᵷuᴉʇʇǝS uoɯɯoƆ",
+  "dn.configuration.title": "ᵷᴉɟuoƆ sǝɥɔʇoN ʎɐꞁdsᴉᗡ"
 }

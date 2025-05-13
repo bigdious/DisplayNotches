@@ -15,5 +15,10 @@
   "block.dn.purple_display_notch": "Purple Display Notch",
   "block.dn.red_display_notch": "Red Display Notch",
   "block.dn.white_display_notch": "White Display Notch",
-  "block.dn.yellow_display_notch": "Yellow Display Notch"
+  "block.dn.yellow_display_notch": "Yellow Display Notch",
+  "config.dn.spinning_source.signal": "Redstone Signal",
+  "config.dn.spinning_source.torch_item": "Redstone Torch Right-click",
+  "dn.configuration.section.obtrophies.common.toml": "Common Settings",
+  "dn.configuration.section.obtrophies.common.toml.title": "Common Settings",
+  "dn.configuration.title": "Display Notches Config"
 }

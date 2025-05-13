@@ -1,6 +1,7 @@
 package com.bigdious.dn.blocks.entity;
 
 import com.bigdious.dn.blocks.DisplayNotchBlock;
+import com.bigdious.dn.config.DNConfig;
 import com.bigdious.dn.init.DNBlockEntities;
 import com.bigdious.dn.init.DNBlocks;
 import net.minecraft.core.BlockPos;
@@ -12,6 +13,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class DisplayNotchBlockEntity extends BlockEntity implements WorldlyContainer, ContainerSingleItem.BlockContainerSingleItem {
 	protected ItemStack item = ItemStack.EMPTY;
 	public boolean stand;
+	public boolean shouldRotate;
 
 	public DisplayNotchBlockEntity(BlockPos pos, BlockState state) {
 		super(DNBlockEntities.DISPLAY_NOTCH.get(), pos, state);
@@ -34,6 +37,7 @@ public class DisplayNotchBlockEntity extends BlockEntity implements WorldlyConta
 			tag.put("item", this.item.save(registries));
 		}
 		tag.putBoolean("stand", this.stand);
+		tag.putBoolean("shouldRotate", this.shouldRotate);
 	}
 
 	@Override
@@ -45,6 +49,7 @@ public class DisplayNotchBlockEntity extends BlockEntity implements WorldlyConta
 			this.item = ItemStack.EMPTY;
 		}
 		this.stand = tag.getBoolean("stand");
+		this.shouldRotate = tag.getBoolean("shouldRotate");
 		super.loadAdditional(tag, registries);
 	}
 
@@ -93,6 +98,11 @@ public class DisplayNotchBlockEntity extends BlockEntity implements WorldlyConta
 			}
 		} else if (stack.is(ItemTags.AXES)) {
 			this.stand = !this.stand;
+			this.setChanged();
+			level.sendBlockUpdated(pos, state, state, 2);
+			return true;
+		} else if (stack.is(Items.REDSTONE_TORCH) && DNConfig.spinningSource == DNConfig.SpinningSource.TORCH_ITEM) {
+			this.shouldRotate = !this.shouldRotate;
 			this.setChanged();
 			level.sendBlockUpdated(pos, state, state, 2);
 			return true;

@@ -22,5 +22,11 @@ public class DNLangGenerator extends DNLangProvider {
 				this.add("block.dn." + color.getName() + "_display_notch", WordUtils.capitalize(color.getName().replace('_', ' ')) + " Display Notch");
 			}
 		}
+		this.add("dn.configuration.title", "Display Notches Config");
+		this.add("dn.configuration.section.obtrophies.common.toml", "Common Settings");
+		this.add("dn.configuration.section.obtrophies.common.toml.title", "Common Settings");
+
+		this.add("config.dn.spinning_source.signal", "Redstone Signal");
+		this.add("config.dn.spinning_source.torch_item", "Redstone Torch Right-click");
 	}
 }

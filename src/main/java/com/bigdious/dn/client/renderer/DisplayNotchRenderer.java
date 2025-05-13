@@ -2,6 +2,7 @@ package com.bigdious.dn.client.renderer;
 
 import com.bigdious.dn.blocks.DisplayNotchBlock;
 import com.bigdious.dn.blocks.entity.DisplayNotchBlockEntity;
+import com.bigdious.dn.config.DNConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.LightTexture;
@@ -43,7 +44,7 @@ public class DisplayNotchRenderer implements BlockEntityRenderer<DisplayNotchBlo
 			.rotateY(stand ? -rotation : 180.0F * Mth.DEG_TO_RAD)
 			.rotateZ(stand ? 0.0F : rotation));
 
-		if (entity.getLevel().hasNeighborSignal(entity.getBlockPos())) {
+		if ((DNConfig.spinningSource == DNConfig.SpinningSource.SIGNAL && entity.getLevel().hasNeighborSignal(entity.getBlockPos())) || entity.shouldRotate) {
 			if (stand) {
 				stack.mulPose(Axis.YP.rotationDegrees(AnimationRenderHelper.rotation*2));
 			} else {

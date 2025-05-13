@@ -13,6 +13,8 @@ import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
@@ -32,6 +34,8 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import org.jetbrains.annotations.Nullable;
@@ -51,6 +55,7 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 	public static final BooleanProperty ELEVATE = BooleanProperty.create("elevate");
 	public static final BooleanProperty GLOWING = BooleanProperty.create("glowing");
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
+	public static final BooleanProperty PHANTOM = BooleanProperty.create("phantom");
 
 	public static final Map<DyeColor, DeferredBlock<Block>> NOTCH_BY_DYE = Util.make(Maps.newEnumMap(DyeColor.class), map -> {
 		map.put(DyeColor.WHITE, DNBlocks.WHITE_DISPLAY_NOTCH);
@@ -78,7 +83,8 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 			.setValue(FACING, Direction.UP)
 			.setValue(GLOWING, false)
 			.setValue(ROTATION, 0)
-			.setValue(ELEVATE, false));
+			.setValue(ELEVATE, false)
+			.setValue(PHANTOM, false));
 	}
 
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
@@ -95,6 +101,10 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 			return ItemInteractionResult.sidedSuccess(level.isClientSide());
 		} else if (!notch.getTheItem().isEmpty() && stack.is(ItemTags.PICKAXES)) {
 			level.setBlock(pos, state.cycle(ROTATION), 3);
+			level.sendBlockUpdated(pos, state, state, 2);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide());
+		} else if (!notch.getTheItem().isEmpty() && stack.is(Items.PHANTOM_MEMBRANE)) {
+			level.setBlock(pos, state.cycle(PHANTOM), 3);
 			level.sendBlockUpdated(pos, state, state, 2);
 			return ItemInteractionResult.sidedSuccess(level.isClientSide());
 		} else if (!notch.getTheItem().isEmpty() && notch.handleBEInteractions(stack, level, pos, state)) {
@@ -151,7 +161,7 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, FLUIDLOGGED, ELEVATE, ROTATION, GLOWING);
+		builder.add(FACING, FLUIDLOGGED, ELEVATE, ROTATION, GLOWING, PHANTOM);
 	}
 
 	@Override
@@ -219,5 +229,12 @@ public class DisplayNotchBlock extends BaseEntityBlock implements SimpleMultilog
 
 	protected boolean hasAnalogOutputSignal(BlockState state) {
 		return true;
+	}
+
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext collision) {
+		if (state.getValue(PHANTOM)){
+			return Shapes.empty();
+		} else return super.getCollisionShape(state, getter, pos, collision);
 	}
 }
