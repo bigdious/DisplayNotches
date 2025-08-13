@@ -6,6 +6,7 @@ import com.bigdious.dn.data.*;
 import com.bigdious.dn.init.DNBlockEntities;
 import com.bigdious.dn.init.DNBlocks;
 import com.bigdious.dn.init.DNItems;
+import com.bigdious.dn.init.DNTab;
 import com.bigdious.dn.network.SyncCommonConfigPacket;
 import com.bigdious.dn.network.SyncDNConfigPacket;
 import com.google.common.reflect.Reflection;
@@ -42,6 +43,7 @@ public class DN {
 		bus.addListener(ConfigSetup::reloadConfigs);
 		NeoForge.EVENT_BUS.addListener(ConfigSetup::syncConfigOnLogin);
 		bus.addListener(this::registerPacket);
+		bus.addListener(DNTab::addToTabs);
 
 		DNBlockEntities.BLOCK_ENTITIES.register(bus);
 		DNBlocks.BLOCKS.register(bus);

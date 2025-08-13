@@ -28,5 +28,19 @@ public class DNLangGenerator extends DNLangProvider {
 
 		this.add("config.dn.spinning_source.signal", "Redstone Signal");
 		this.add("config.dn.spinning_source.torch_item", "Redstone Torch Right-click");
+
+		//this is not in order on purpose
+		this.add("tooltip.dn.hidden", "[Hold Shift for Usages]");
+		this.add("tooltip.dn.start", "Once an Item is inserted, you can manipulate it:");
+		this.add("tooltip.dn.pickaxe", " - Rotate the item with a Pickaxe");
+		this.add("tooltip.dn.axe", " - Flip the item between horizontal or vertical with an Axe");
+		this.add("tooltip.dn.glow_ink_sac", " - Make the item glow with a Glow Inc Sac");
+		this.add("tooltip.dn.dye", " - Color the notch with Dyes");
+		this.add("tooltip.dn.phantom_membrane", " - Make the notch non-solid with a Phantom Membrane");
+		this.add("tooltip.dn.tripwire_hook", " - Lock the notch with a Tripwire Hook");
+		this.add("tooltip.dn.glass", " - Make the notch invisible with a Glass Block");
+		this.add("tooltip.dn.signal", " - Make the item continuously rotate by powering it with a Redstone Signal");
+		this.add("tooltip.dn.shovel", " - Change the item's elevation using a Shovel");
+		this.add("tooltip.dn.redstone_torch", " - Make the item continuously rotate by using a Redstone Torch");
 	}
 }

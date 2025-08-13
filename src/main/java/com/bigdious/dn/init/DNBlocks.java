@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 public class DNBlocks {
 	public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(DN.MODID);
 
-	public static final DeferredBlock<Block> DISPLAY_NOTCH = registerWithItem("display_notch", DisplayNotchBlock::new, () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(1.5F, 6.0F).lightLevel(state -> state.getValue(SimpleMultiloggedBlock.MultiloggingEnum.FLUIDLOGGED) == SimpleMultiloggedBlock.MultiloggingEnum.LAVA ? 15 : 0));
+	public static final DeferredBlock<Block> DISPLAY_NOTCH = register("display_notch", DisplayNotchBlock::new, () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(1.5F, 6.0F).lightLevel(state -> state.getValue(SimpleMultiloggedBlock.MultiloggingEnum.FLUIDLOGGED) == SimpleMultiloggedBlock.MultiloggingEnum.LAVA ? 15 : 0));
 	public static final DeferredBlock<Block> GRAY_DISPLAY_NOTCH = register("gray_display_notch", DisplayNotchBlock::new, () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(1.5F, 6.0F).lightLevel(state -> state.getValue(SimpleMultiloggedBlock.MultiloggingEnum.FLUIDLOGGED) == SimpleMultiloggedBlock.MultiloggingEnum.LAVA ? 15 : 0));
 	public static final DeferredBlock<Block> LIGHT_GRAY_DISPLAY_NOTCH = register("light_gray_display_notch", DisplayNotchBlock::new, () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(1.5F, 6.0F).lightLevel(state -> state.getValue(SimpleMultiloggedBlock.MultiloggingEnum.FLUIDLOGGED) == SimpleMultiloggedBlock.MultiloggingEnum.LAVA ? 15 : 0));
 	public static final DeferredBlock<Block> WHITE_DISPLAY_NOTCH = register("white_display_notch", DisplayNotchBlock::new, () -> BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(1.5F, 6.0F).lightLevel(state -> state.getValue(SimpleMultiloggedBlock.MultiloggingEnum.FLUIDLOGGED) == SimpleMultiloggedBlock.MultiloggingEnum.LAVA ? 15 : 0));
@@ -37,10 +37,5 @@ public class DNBlocks {
 
 	public static <T extends Block> DeferredBlock<T> register(String name, Function<BlockBehaviour.Properties, T> block, Supplier<BlockBehaviour.Properties> properties) {
 		return BLOCKS.register(name, () -> block.apply(properties.get()));
-	}
-	public static <T extends Block> DeferredBlock<T> registerWithItem(String name, Function<BlockBehaviour.Properties, T> block, Supplier<BlockBehaviour.Properties> properties) {
-		DeferredBlock<T> ret = BLOCKS.register(name, () -> block.apply(properties.get()));
-		DNItems.register(name, itemProps -> new BlockItem(ret.get(), itemProps), Item.Properties::new);
-		return ret;
 	}
 }

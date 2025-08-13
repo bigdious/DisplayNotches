@@ -1,6 +1,8 @@
 package com.bigdious.dn.init;
 
 import com.bigdious.dn.DN;
+import com.bigdious.dn.items.DisplayNotchItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -13,4 +15,7 @@ public class DNItems {
 	public static <T extends Item> DeferredItem<T> register(String name, Function<Item.Properties, T> item, Supplier<Item.Properties> properties) {
 		return ITEMS.register(name, () -> item.apply(properties.get()));
 	}
+
+	public static final DeferredItem<Item> DISPLAY_NOTCH = register("display_notch", properties -> new DisplayNotchItem(DNBlocks.DISPLAY_NOTCH.get(), properties), Item.Properties::new);
+
 }
